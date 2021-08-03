@@ -2,15 +2,18 @@ Authentication service case:
 
 ![auth](auth.png)
 
-The auth methodology it will be based on simple API setup:
+There are two gateways. The external one is responsible to redirect request to
+internal gateway if authentication method isn't present, or redirect to auth
+engine if method is present (example: ```auth: "auth-v1"```)
+
+the auth gateway after authenticate te request, call the internal gateway that
+is responsible to route the request to specific API.
+
+the example bellow is an api values to set up endpoint configs:
 ```
 gateway:
   routes:
   - name: "hello"
     path: "/hello/v1/sayHello"
-    skipAuth: false
+    auth: "auth-v1"
 ```
-
-if skipeAuth is true, the GW virtual service will redirect to API, in
-other case it will redirect to API-AUTH service that afterwards will redirect
-to respective API
