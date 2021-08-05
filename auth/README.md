@@ -13,7 +13,9 @@ the example bellow is an api values to set up endpoint configs:
 ```
 gateway:
   routes:
-  - name: "hello"
-    path: "/hello/v1/sayHello"
-    auth: "auth-v1"
+    - path: "/hello/v1/withAuth/sayHello"
+    auth: "authv1"
+    - path: "/hello/withOtherAuth/sayHello"
+    auth: "authv2"
+    - path: "/hello/withoutAuth/sayHello"
 ```
